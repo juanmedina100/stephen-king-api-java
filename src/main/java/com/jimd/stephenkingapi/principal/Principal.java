@@ -19,13 +19,14 @@ public class Principal {
         //System.out.println(json);
         var datos = convierteDatos.obtenerDatos(json, Datos.class);
         //Obteniendo datos de pruebas
-        datos.libros().stream()
-                .limit(5)
-                .map(l->l.titulo()+" - "+l.anio()+" - "+l.pagin())
-                .forEach(System.out::println);
-        System.out.println("****************************************************");
+//        datos.libros().stream()
+//                .limit(5)
+//                .map(l->l.titulo()+" - "+l.anio()+" - "+l.pagin())
+//                .forEach(System.out::println);
         //Optener el top 10 de libros mas largos
+        System.out.println("****************************************************");
         System.out.println("Top 10 libros con mas páginas :");
+        System.out.println("****************************************************");
         datos.libros().stream()
                 .sorted(Comparator.comparing(DatosLibros::pagin).reversed())
                 .limit(10)
@@ -35,6 +36,7 @@ public class Principal {
         //Optener el top 10 de libros mas cortos
         System.out.println("****************************************************");
         System.out.println("Top 10 libros con menos páginas :");
+        System.out.println("****************************************************");
         datos.libros().stream()
                 .sorted(Comparator.comparing(DatosLibros::pagin))
                 .limit(10)
@@ -44,6 +46,7 @@ public class Principal {
         //Optener top 10 de libros mas antiguos en la página web
         System.out.println("****************************************************");
         System.out.println("Top 10 libros más antiguos segun su publicación :");
+        System.out.println("****************************************************");
         datos.libros().stream()
                 .sorted(Comparator.comparing(DatosLibros::anio))
                 .limit(10)
@@ -52,6 +55,7 @@ public class Principal {
         //Optener top 10 de libros mas recientes en la página web
         System.out.println("****************************************************");
         System.out.println("Top 10 libros más recientes segun su publicación :");
+        System.out.println("****************************************************");
         datos.libros().stream()
                 .sorted(Comparator.comparing(DatosLibros::anio).reversed())
                 .limit(10)
