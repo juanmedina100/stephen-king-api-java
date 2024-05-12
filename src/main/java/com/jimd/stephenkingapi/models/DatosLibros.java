@@ -13,5 +13,4 @@ public record DatosLibros(
         @JsonAlias("Pages") Integer pagin,
         @JsonAlias("Notes") List<String> notas
 ) {
-
 }

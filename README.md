@@ -16,30 +16,33 @@ Captura de top 10 libros más pequeños segun su cantidad de paginas:
 ![img.png](images/img2.png)
 
 ### Este es el codigo de conexión a la API
-`public class ConsumoAPI {
 
-    public String obtenerDatos(String url){
-        HttpClient client = HttpClient.newHttpClient();
-        HttpRequest request = HttpRequest.newBuilder()
-                .uri(URI.create(url)).build();
-        HttpResponse<String> response = null;
-        try{
-            response = client.send(request,HttpResponse.BodyHandlers.ofString());
-        }catch (IOException e){
-            throw  new RuntimeException(e);
-        }catch (InterruptedException e){
-            throw new RuntimeException(e);
+    public class ConsumoAPI {
+        public String obtenerDatos(String url){
+            HttpClient client = HttpClient.newHttpClient();
+            HttpRequest request = HttpRequest.newBuilder()
+                    .uri(URI.create(url)).build();
+            HttpResponse<String> response = null;
+            try{
+                response = client.send(request,HttpResponse.BodyHandlers.ofString());
+            }catch (IOException e){
+                throw  new RuntimeException(e);
+            }catch (InterruptedException e){
+                throw new RuntimeException(e);
+            }
+            String json = response.body();
+            return json;
         }
-        String json = response.body();
-        return json;
     }
-}`
+
 
 ### El modelo de datos (model) usado en este caso es:
-`
-@JsonAlias("Year") Integer anio,
-@JsonAlias("Title") String titulo,
-@JsonAlias("Publisher") String publicado,
-@JsonAlias("Pages") Integer pagin,
-@JsonAlias("Notes") List<String> notas
-`
+
+    public record DatosLibros(
+        @JsonAlias("Year") Integer anio,
+        @JsonAlias("Title") String titulo,
+        @JsonAlias("Publisher") String publicado,
+        @JsonAlias("Pages") Integer pagin,
+        @JsonAlias("Notes") List<String> notas
+    ) {
+    }
